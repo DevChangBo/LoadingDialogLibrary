@@ -1,6 +1,7 @@
 package com.cb.dialoglibrary;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.icu.util.IndianCalendar;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -21,11 +22,11 @@ public class LoadingDialog extends AlertDialog {
     private static LoadingDialog loadingDialog;
     private AVLoadingIndicatorView avi;
 
-    public static LoadingDialog getInstance(Context context) {
+    public static LoadingDialog getInstance(Context context, DialogInterface.OnCancelListener mCancelListener) {
         if (null == loadingDialog) {
             loadingDialog = new LoadingDialog(context, R.style.TransparentDialog); //设置AlertDialog背景透明
-            loadingDialog.setCancelable(false);
             loadingDialog.setCanceledOnTouchOutside(false);
+            loadingDialog.setOnCancelListener(mCancelListener);
         }
         return loadingDialog;
     }
@@ -78,16 +79,4 @@ public class LoadingDialog extends AlertDialog {
     }
 
 
-    /**
-     * 监听Back键按下事件,方法1:
-     * 注意:
-     * super.onBackPressed()会自动调用finish()方法,关闭
-     * 当前Activity.
-     * 若要屏蔽Back键盘,注释该行代码即可
-     */
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        dismiss();    //关闭加载动画页面
-    }
 }
