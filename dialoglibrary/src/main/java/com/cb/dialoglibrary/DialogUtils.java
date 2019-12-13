@@ -1,6 +1,9 @@
 package com.cb.dialoglibrary;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 
 /**
  * ================================================================
@@ -19,6 +22,24 @@ public class DialogUtils {
     public static DialogUtils getInstance() {
         mDialogUtils = mDialogUtils == null ? new DialogUtils() : mDialogUtils;
         return mDialogUtils;
+    }
+
+    public Dialog getLoadingDialog(Context context, DialogInterface.OnCancelListener mCancelListener) {
+        LoadingDialog dialog = new LoadingDialog(context, R.style.TransparentDialog); //设置AlertDialog背景透明
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnCancelListener(mCancelListener);
+        dialog.show();
+        return dialog;
+    }
+
+
+    public Dialog getLoadingDialog(Context context, DialogInterface.OnCancelListener mCancelListener,String indicatorName) {
+        LoadingDialog dialog = new LoadingDialog(context, R.style.TransparentDialog); //设置AlertDialog背景透明
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnCancelListener(mCancelListener);
+        dialog.show();
+        dialog.indicatorName(indicatorName);
+        return dialog;
     }
 
 

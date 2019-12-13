@@ -1,13 +1,10 @@
 package com.cb.dialoglibrary;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.icu.util.IndianCalendar;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 
-import com.wang.avi.AVLoadingIndicatorView;
-import com.wang.avi.Indicator;
+import androidx.appcompat.app.AlertDialog;
+
 
 /**
  * ================================================================
@@ -19,17 +16,8 @@ import com.wang.avi.Indicator;
  */
 public class LoadingDialog extends AlertDialog {
 
-    private static LoadingDialog loadingDialog;
     private AVLoadingIndicatorView avi;
 
-    public static LoadingDialog getInstance(Context context, DialogInterface.OnCancelListener mCancelListener) {
-        if (null == loadingDialog) {
-            loadingDialog = new LoadingDialog(context, R.style.TransparentDialog); //设置AlertDialog背景透明
-            loadingDialog.setCanceledOnTouchOutside(false);
-            loadingDialog.setOnCancelListener(mCancelListener);
-        }
-        return loadingDialog;
-    }
 
     public LoadingDialog(Context context, int themeResId) {
         super(context,themeResId);
